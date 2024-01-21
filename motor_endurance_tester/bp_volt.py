@@ -28,7 +28,4 @@ def get_voltage():
 
     except Exception as e:
         print(e)
-        return None
-
-if __name__ == "__main__":
-    print(get_voltage())
+        return False
