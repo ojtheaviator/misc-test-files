@@ -16,6 +16,7 @@ try:
     BP.set_motor_power(BP.PORT_B,0)
 
     orig_time = time.time()
+    file_time = round(orig_time)
     prevenc = 0
     run = True
 
@@ -42,15 +43,14 @@ try:
         
         outputStr = f"{encoder_A}\t{encoder_B}\t{bat_volt}\t{time_elapsed}"
         print(outputStr)
-        with open(f"motor_log_{round(orig_time)}.csv", "a") as fid:
+        with open(f"motor_log_{orig_time}.csv", "a") as fid:
             fid.write(outputStr+"\n")
         
         time.sleep(refresh_frequency)
-except KeyboardInterrupt:
+except Exception as e:
+    print(e)
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_B, 0)
     sys.exit()
     
-
-
 
