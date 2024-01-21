@@ -6,7 +6,6 @@ import smbus
 
 def get_voltage():
 
-    time.sleep(0.01) # Necessary?
     try:
             bus = smbus.SMBus(1)            # SMBUS 1 because we're using greater than V1.
             address = 0x48
