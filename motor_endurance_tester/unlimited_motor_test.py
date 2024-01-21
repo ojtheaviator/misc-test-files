@@ -1,8 +1,6 @@
 import brickpi3
 import time
-from bp_volt import get_voltage
 import sys
-import time
 
 #CONFIG:
 power_setting = 100 #%
@@ -33,8 +31,9 @@ try:
         encoder_A = BP.get_motor_encoder(BP.PORT_A)
         encoder_B = BP.get_motor_encoder(BP.PORT_B)
         
-        bat_volt = get_voltage()
+        bat_volt = BP.get_voltage_battery()
         if (bat_volt < 6.3): #dangerously low battery level: turn off
+            raise AttributeError('Voltage has been read below 6.3 volts - i.e. a dangerously low level for the battery.')
             BP.set_motor_power(BP.PORT_A, 0)
             BP.set_motor_power(BP.PORT_B, 0)
             run = False
@@ -47,6 +46,7 @@ try:
             fid.write(outputStr+"\n")
         
         time.sleep(refresh_frequency)
+        
 except Exception as e:
     print(e)
     BP.set_motor_power(BP.PORT_A, 0)
