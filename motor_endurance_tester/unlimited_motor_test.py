@@ -20,7 +20,7 @@ try:
 
     outputStr = f"Encoder A:\tEncoder B:\tBattery Voltage:\tUnix Time:\n"
     print(outputStr)
-    with open(f"motor_log_{orig_time}.csv", "w") as fid:
+    with open(f"logs/motor_log_{orig_time}.csv", "w") as fid:
         fid.write(outputStr)
 
     BP.set_motor_power(BP.PORT_A, power_setting)
@@ -41,7 +41,7 @@ try:
         
         outputStr = f"{encoder_A}\t{encoder_B}\t{bat_volt}\t{time_elapsed}"
         print(outputStr)
-        with open(f"motor_log_{orig_time}.csv", "a") as fid:
+        with open(f"logs/motor_log_{orig_time}.csv", "a") as fid:
             fid.write(outputStr+"\n")
         
         if run:
