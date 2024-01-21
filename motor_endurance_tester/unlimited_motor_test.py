@@ -14,7 +14,7 @@ try:
     BP.set_motor_power(BP.PORT_B,0)
 
     orig_time = time.time()
-    file_time = round(orig_time)
+    file_time = int(orig_time)
     prevenc = 0
     run = True
 
