@@ -42,7 +42,7 @@ try:
         
         outputStr = f"{encoder_A}\t{encoder_B}\t{bat_volt}\t{time_elapsed}"
         print(outputStr)
-        with open(f"motor_log_{orig_time}.csv", "a") as fid:
+        with open(f"motor_log_{round(orig_time)}.csv", "a") as fid:
             fid.write(outputStr+"\n")
         
         time.sleep(refresh_frequency)
