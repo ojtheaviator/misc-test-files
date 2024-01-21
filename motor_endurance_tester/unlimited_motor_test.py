@@ -33,7 +33,6 @@ try:
         
         bat_volt = BP.get_voltage_battery()
         if (bat_volt < 6.3): #dangerously low battery level: turn off
-            raise AttributeError('Voltage has been read below 6.3 volts - i.e. a dangerously low level for the battery.')
             BP.set_motor_power(BP.PORT_A, 0)
             BP.set_motor_power(BP.PORT_B, 0)
             run = False
@@ -45,10 +44,10 @@ try:
         with open(f"motor_log_{orig_time}.csv", "a") as fid:
             fid.write(outputStr+"\n")
         
-        time.sleep(refresh_frequency)
+        if run:
+            time.sleep(refresh_frequency)
         
-except Exception as e:
-    print(e)
+except KeyboardInterrupt:
     BP.set_motor_power(BP.PORT_A, 0)
     BP.set_motor_power(BP.PORT_B, 0)
     sys.exit()
